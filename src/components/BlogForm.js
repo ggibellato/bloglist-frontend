@@ -1,11 +1,11 @@
 import React, { useState }  from 'react'
 
-const CreateBlog = ({handleCreate}) => {
+const BlogForm = ({handleCreate}) => {
   const [ title, setTitle] = useState('')
   const [ author, setAuthor] = useState('')
   const [ url, setUrl] = useState('')
 
-  const submitCreate = async (event) => {
+  const submitCreate = (event) => {
     event.preventDefault()
     handleCreate(title, author, url)
   }
@@ -47,4 +47,4 @@ const CreateBlog = ({handleCreate}) => {
   )
 }
 
-export default CreateBlog
+export default BlogForm
