@@ -24,7 +24,7 @@ const Blog = ({ blog, handleAddLike, handleRemove, user }) => {
 
   const handleRemovedClick = (event) => {
     event.preventDefault()
-    if(window.confirm(`remove blog ${blog.title} by ${blog.author}`)) {    
+    if(window.confirm(`remove blog ${blog.title} by ${blog.author}`)) {
       handleRemove(blog)
     }
   }

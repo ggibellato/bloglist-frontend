@@ -1,6 +1,6 @@
 import React, { useState }  from 'react'
 
-const BlogForm = ({handleCreate}) => {
+const BlogForm = ({ handleCreate }) => {
   const [ title, setTitle] = useState('')
   const [ author, setAuthor] = useState('')
   const [ url, setUrl] = useState('')
@@ -16,7 +16,7 @@ const BlogForm = ({handleCreate}) => {
       <form onSubmit={submitCreate}>
         <div>
           title:
-            <input
+          <input
             type="text"
             value={title}
             name="title"
@@ -25,7 +25,7 @@ const BlogForm = ({handleCreate}) => {
         </div>
         <div>
           author:
-            <input
+          <input
             type="text"
             value={author}
             name="author"
@@ -34,7 +34,7 @@ const BlogForm = ({handleCreate}) => {
         </div>
         <div>
           url:
-            <input
+          <input
             type="text"
             value={url}
             name="url"
@@ -42,7 +42,7 @@ const BlogForm = ({handleCreate}) => {
           />
         </div>
         <button type="submit">create</button>
-      </form>      
+      </form>
     </div>
   )
 }

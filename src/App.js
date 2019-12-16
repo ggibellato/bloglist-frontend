@@ -6,8 +6,8 @@ import Login from './components/Login'
 import Blogs from './components/Blogs'
 
 function App() {
-  const nERROR = "errorNotification"
-  const nOK = "okNotification"
+  const nERROR = 'errorNotification'
+  const nOK = 'okNotification'
   const userLocalStorageKey = 'loggedBlogappUser'
 
   const [ errorMessage, setErrorMessage ] = useState(null)
@@ -19,10 +19,10 @@ function App() {
 
   useEffect(() => {
     blogService
-    .getAll()
-    .then(initialBlogs => { 
-      setBlogs(initialBlogs) 
-    })
+      .getAll()
+      .then(initialBlogs => {
+        setBlogs(initialBlogs)
+      })
   }, [])
 
   useEffect(() => {
@@ -38,11 +38,11 @@ function App() {
     event.preventDefault()
     try {
       const user = await loginService.login({
-         username, password,
+        username, password,
       })
       window.localStorage.setItem(
         userLocalStorageKey, JSON.stringify(user)
-      )       
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -62,10 +62,10 @@ function App() {
 
   const handleCreateBlog = async (title, author, url) => {
     const newBlog = {
-      "title": title,
-      "author": author,
-      "url": url,
-      "likes": 0
+      'title': title,
+      'author': author,
+      'url': url,
+      'likes': 0
     }
     try {
       const blog = await blogService.createBlog(newBlog)
@@ -112,27 +112,27 @@ function App() {
     }
   }
 
-return (
+  return (
     <div>
       <Notification message={errorMessage} notificationClass={notificationClass} />
       { user === null
-        ? <Login handleLogin={handleLogin} 
-            username={username} 
-            setUsername={setUsername}
-            password={password} 
-            setPassword={setPassword}
-          />
-        : <Blogs username={user.name} 
-            handleLogout={handleLogout}
-            blogs={blogs}
-            handleCreate={handleCreateBlog}
-            handleAddLike={handleAddLike}
-            handleRemove={handleRemove}
-            user={user}
-          />
+        ? <Login handleLogin={handleLogin}
+          username={username}
+          setUsername={setUsername}
+          password={password}
+          setPassword={setPassword}
+        />
+        : <Blogs username={user.name}
+          handleLogout={handleLogout}
+          blogs={blogs}
+          handleCreate={handleCreateBlog}
+          handleAddLike={handleAddLike}
+          handleRemove={handleRemove}
+          user={user}
+        />
       }
     </div>
   )
 }
 
-export default App;
+export default App
