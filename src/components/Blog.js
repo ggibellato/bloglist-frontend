@@ -31,9 +31,9 @@ const Blog = ({ blog, handleAddLike, handleRemove, user }) => {
 
   return (
     <div style={blogStyle}>
-      <div onClick={handleBlogClick}>
+      <div onClick={handleBlogClick} className='toggleBlogInfo'>
         {blog.title} {blog.author}
-        <div style={{ display: detailVisible ? '' : 'none' }}>
+        <div style={{ display: detailVisible ? '' : 'none' }} className='blogDetails'>
           {blog.url}<br />
           {blog.likes} likes <button onClick={handleAddLikeClick}>like</button><br />
           added by {blog.user.name}<br />
