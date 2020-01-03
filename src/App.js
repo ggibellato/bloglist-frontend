@@ -4,6 +4,7 @@ import loginService from './services/login'
 import blogService from './services/blogs'
 import Login from './components/Login'
 import Blogs from './components/Blogs'
+import  { useField } from './hooks'
 
 function App() {
   const nERROR = 'errorNotification'
@@ -12,10 +13,11 @@ function App() {
 
   const [ errorMessage, setErrorMessage ] = useState(null)
   const [ notificationClass, setNotificationClass ] = useState(nERROR)
-  const [ username, setUsername] = useState('')
-  const [ password, setPassword] = useState('')
   const [ user, setUser] = useState(null)
   const [ blogs, setBlogs] = useState([])
+
+  const username = useField('text')
+  const password = useField('password')
 
   useEffect(() => {
     blogService
@@ -38,15 +40,15 @@ function App() {
     event.preventDefault()
     try {
       const user = await loginService.login({
-        username, password,
+        username: username.value, password: password.value
       })
       window.localStorage.setItem(
         userLocalStorageKey, JSON.stringify(user)
       )
       blogService.setToken(user.token)
       setUser(user)
-      setUsername('')
-      setPassword('')
+      username.reset()
+      password.reset()
     } catch (exception) {
       setNotificationClass(nERROR)
       setErrorMessage('Wrong credentials')
@@ -118,9 +120,7 @@ function App() {
       { user === null
         ? <Login handleLogin={handleLogin}
           username={username}
-          setUsername={setUsername}
           password={password}
-          setPassword={setPassword}
         />
         : <Blogs username={user.name}
           handleLogout={handleLogout}
